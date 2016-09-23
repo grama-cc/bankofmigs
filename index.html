@@ -8,14 +8,14 @@
   <link rel="stylesheet" type="text/css" href="./build/css/style.css"/>
 </head>
 <body>
-	<h1 class="user">Lalisson</h1>
-	<table class="transitions">
-	  <tr>
-	    <td><h2>Date</h2></td> 
-	    <td><h2>Description</h2></td>
-	    <td><h2>Valor</h2></td>
-	    <td><h2>Migo</h2></td>
-	  </tr>
+  <h1 class="user">Lalisson</h1>
+  <table class="transitions">
+    <tr>
+      <td><h2>Date</h2></td> 
+      <td><h2>Description</h2></td>
+      <td><h2>Valor</h2></td>
+      <td><h2>Migo</h2></td>
+    </tr>
   </table>
 
   <button id="add-button" class="btn-floating btn-large waves-effect waves-light red">
@@ -50,33 +50,4 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="./node_modules/materialize-css/dist/js/materialize.js"></script>
   <script type="text/javascript" src="./build/js/script.js"></script>
-  <script type="text/javascript">
-
-    $('#form-add').submit(function(e) {
-      e.preventDefault();
-
-      var form = $(this);
-      var data = form.serialize();
-
-      $.post('http://192.168.1.29:5000/transaction/', data, function(response) {
-        form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
-      })
-
-    });
-
-    $('.delete').on('click', function(e) {
-      var button = $(e.currentTarget);
-      var id = button.attr('transaction-id');
-
-      $.post('.', id, function(response) {
-        console.log(response);
-        console.log(button.closest('tr').remove());
-      })
-    });
-
-    $('#add-button').on('click', function() {
-      $('#form-add').addClass('show');
-    })
-
-  </script>
 </body>
