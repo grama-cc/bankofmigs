@@ -20,14 +20,14 @@
 	  	<th>Grama</th>
 	  	<th>10 golpinhos</th>
 	  	<th><a href="">Edin</a></th>
-	    <th><button class="delete">X</button></th>
+	    <th><button class="delete" transaction-id="1">X</button></th>
 	  </tr>
 	  <tr>
 	  	<th>12/08</th>
 	  	<th>Grama</th>
 	  	<th>10 golpinhos</th>
 	  	<th><a href="">Flora</a></th>
-	    <th><button class="delete">X</button></th>
+	    <th><button class="delete" transaction-id="2">X</button></th>
 	  </tr>
 	  <tr>
 	   	<th><input type="text" class="date" placeholder="data"></th>
@@ -67,10 +67,21 @@
       var form = $(this);
       var data = form.serialize();
 
-      $.post('form.html', data, function() {
-        form.find('.feedback').text('Adicionado :) ' + data.toString());
+      $.post('table.html', data, function(response) {
+        form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
       })
 
     });
+
+    $('.delete').on('click', function(e) {
+      var button = $(e.currentTarget);
+      var id = button.attr('transaction-id');
+
+      $.post('table.html', id, function(response) {
+        console.log(response);
+        console.log(button.closest('tr').remove());
+      })
+    });
+
   </script>
 </body>
