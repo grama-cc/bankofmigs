@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from api import app
 db = SQLAlchemy(app)
 
 
@@ -17,10 +18,11 @@ class User(db.Model):
 
 class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    description = db.Column(db.String(120), unique=True)
+    sender = db.Column(db.Integer, db.ForeignKey('user.id'))
+    receiver = db.Column(db.String(80), db.ForeignKey('user.id'))
+    description = db.Column(db.String(120))
     date = db.Column(db.DateTime())
-    value = db.Column(db.Float, unique=True)
+    value = db.Column(db.Float)
 
     def __init__(self, username, email):
         self.username = username
