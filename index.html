@@ -4,6 +4,12 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Bank of Migs</title>
+<<<<<<< HEAD
+=======
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./node_modules/materialize-css/dist/css/materialize.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/build/style.css"/>
+>>>>>>> master
 </head>
 <body>
 	<h1 class="user">Lalisson</h1>
@@ -16,7 +22,10 @@
 	  </tr>
   </table>
 
-  <h1>Inserir</h1>
+  <button id="add-button" class="btn-floating btn-large waves-effect waves-light red">
+    <i class="material-icons">add</i>
+  </button>
+
   <form id="form-add">
     <label>
       Data
@@ -42,8 +51,13 @@
   </form>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<<<<<<< HEAD
   <script type="text/javascript" src="js/script.js"></script>
+=======
+  <script type="text/javascript" src="./node_modules/materialize-css/dist/js/materialize.js"></script>
+>>>>>>> master
   <script type="text/javascript">
+
     $('#form-add').submit(function(e) {
       e.preventDefault();
 
@@ -65,6 +79,11 @@
         console.log(button.closest('tr').remove());
       })
     });
+
+    $('#form-add').hide();
+    $('#add-button').on('click', function() {
+      $('#form-add').show();
+    })
 
   </script>
 </body>
