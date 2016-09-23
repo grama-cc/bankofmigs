@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Bank of Migs</title>
+  <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>style.css"/>
+</head>
+<body>
+	<h1 class="user">Lalisson</h1>
+	<table class="transitions">
+	  <tr>
+	    <td><h2>Date</h2></td> 
+	    <td><h2>Description</h2></td>
+	    <td><h2>Valor</h2></td>
+	    <td><h2>Migo</h2></td>
+	  </tr>
+	  <tr>
+	  	<th>12/08</th>
+	  	<th>Grama</th>
+	  	<th>10 golpinhos</th>
+	  	<th><a href="">Edin</a></th>
+	    <th><button class="delete" transaction-id="1">X</button></th>
+	  </tr>
+	  <tr>
+	  	<th>12/08</th>
+	  	<th>Grama</th>
+	  	<th>10 golpinhos</th>
+	  	<th><a href="">Flora</a></th>
+	    <th><button class="delete" transaction-id="2">X</button></th>
+	  </tr>
+  </table>
+
+  <h1>Inserir</h1>
+  <form id="form-add">
+    <label>
+      Data
+      <input type="text" name="date">
+    </label>
+    <label>
+      Descrição
+      <input type="text" name="description">
+    </label>
+    <label>
+      Valor
+      <input type="text" name="value">
+    </label>
+    <label>
+      Dar dinheiro para:
+      <select name="user">
+        <option value="flora">Flora</option>
+        <option value="edinho">Edinho</option>
+      </select>
+    </label>
+    <button>Adicionar</button>
+    <div class="feedback"></div>
+  </form>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript">
+    $('#form-add').submit(function(e) {
+      e.preventDefault();
+
+      var form = $(this);
+      var data = form.serialize();
+
+      $.post('.', data, function(response) {
+        form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
+      })
+
+    });
+
+    $('.delete').on('click', function(e) {
+      var button = $(e.currentTarget);
+      var id = button.attr('transaction-id');
+
+      $.post('.', id, function(response) {
+        console.log(response);
+        console.log(button.closest('tr').remove());
+      })
+    });
+
+  </script>
+</body>
