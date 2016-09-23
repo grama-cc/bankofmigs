@@ -24,6 +24,7 @@
   </button>
 
   <form id="form-add">
+    <input type="hidden" name="sender" value="larrison"/>
     <label>
       Data
       <input type="text" name="date">
@@ -38,7 +39,7 @@
     </label>
     <label>
       Dar dinheiro para:
-      <select name="user">
+      <select name="receiver">
         <option value="flora">Flora</option>
         <option value="edinho">Edinho</option>
       </select>
@@ -57,7 +58,7 @@
       var form = $(this);
       var data = form.serialize();
 
-      $.post('.', data, function(response) {
+      $.post('http://192.168.1.29:5000/transaction/', data, function(response) {
         form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
       })
 
