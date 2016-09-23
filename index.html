@@ -71,7 +71,7 @@
       var form = $(this);
       var data = form.serialize();
 
-      $.post('table.html', data, function(response) {
+      $.post('.', data, function(response) {
         form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
       })
 
@@ -81,7 +81,7 @@
       var button = $(e.currentTarget);
       var id = button.attr('transaction-id');
 
-      $.post('table.html', id, function(response) {
+      $.post('.', id, function(response) {
         console.log(response);
         console.log(button.closest('tr').remove());
       })
