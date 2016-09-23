@@ -1,6 +1,9 @@
+(function(){
+
+var api = 'http://192.168.1.29:5000';
 var data;
 var user = 'harrison';
-console.log(1)
+
 $.get( 'data.json', function( data ) {
   data = JSON.parse( data );
 
@@ -22,6 +25,31 @@ $.get( 'data.json', function( data ) {
   });
 });
 
+$('#form-add').submit(function(e) {
+  e.preventDefault();
+
+  var form = $(this);
+  var data = form.serialize();
+
+  $.post(api+'/transaction', data, function(response) {
+    form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
+  })
+
+});
+
+$('.delete').on('click', function(e) {
+  var button = $(e.currentTarget);
+  var id = button.attr('transaction-id');
+
+  $.post(api+'/transaction', id, function(response) {
+    console.log(response);
+    console.log(button.closest('tr').remove());
+  })
+});
+
+$('#add-button').on('click', function() {
+  $('#form-add').addClass('show');
+})
 
 function convertDate( timestamp ) {
   var _dateObj = $.parseJSON( '{"created": ' + timestamp + '}' );
@@ -29,3 +57,5 @@ function convertDate( timestamp ) {
 
   return _date.toString();
 }
+
+})();
