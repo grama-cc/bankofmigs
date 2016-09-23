@@ -37,4 +37,40 @@
 	   	<td><button class="add">V</button></td>
 	  </tr>
   </table>
+
+  <h1>Inserir</h1>
+  <form id="form-add">
+    <label>
+      Dar dinheiro para:
+      <select name="user">
+        <option value="flora">Flora</option>
+        <option value="edinho">Edinho</option>
+      </select>
+    </label>
+    <label>
+      Descrição
+      <input type="text" name="description">
+    </label>
+    <label>
+      Data
+      <input type="text" name="date">
+    </label>
+    <button>Adicionar</button>
+    <div class="feedback"></div>
+  </form>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript">
+    $('#form-add').submit(function(e) {
+      e.preventDefault();
+
+      var form = $(this);
+      var data = form.serialize();
+
+      $.post('form.html', data, function() {
+        form.find('.feedback').text('Adicionado :) ' + data.toString());
+      })
+
+    });
+  </script>
 </body>
