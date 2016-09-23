@@ -10,4 +10,5 @@ def transaction():
     return "Hello World!"
 
 if __name__ == "__main__":
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://test.db'
     app.run()
