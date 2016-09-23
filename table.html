@@ -16,18 +16,18 @@
 	    <td><h2>Migo</h2></td>
 	  </tr>
 	  <tr>
-	  	<td>12/08</td>
-	  	<td>Grama</td>
-	  	<td>10 golpinhos</td>
-	  	<td><a href="">Edin</a></td>
-	    <td><button class="delete">X</button></td>
+	  	<th>12/08</th>
+	  	<th>Grama</th>
+	  	<th>10 golpinhos</th>
+	  	<th><a href="">Edin</a></th>
+	    <th><button class="delete" transaction-id="1">X</button></th>
 	  </tr>
 	  <tr>
-	  	<td>12/08</td>
-	  	<td>Grama</td>
-	  	<td>10 golpinhos</td>
-	  	<td><a href="">Flora</a></td>
-	    <td><button class="delete">X</button></td>
+	  	<th>12/08</th>
+	  	<th>Grama</th>
+	  	<th>10 golpinhos</th>
+	  	<th><a href="">Flora</a></th>
+	    <th><button class="delete" transaction-id="2">X</button></th>
 	  </tr>
 	  <tr>
 	   	<td><input type="text" class="date" placeholder="data"></td>
@@ -67,10 +67,21 @@
       var form = $(this);
       var data = form.serialize();
 
-      $.post('form.html', data, function() {
-        form.find('.feedback').text('Adicionado :) ' + data.toString());
+      $.post('table.html', data, function(response) {
+        form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
       })
 
     });
+
+    $('.delete').on('click', function(e) {
+      var button = $(e.currentTarget);
+      var id = button.attr('transaction-id');
+
+      $.post('table.html', id, function(response) {
+        console.log(response);
+        console.log(button.closest('tr').remove());
+      })
+    });
+
   </script>
 </body>
