@@ -33,7 +33,10 @@
 	  </tr>
   </table>
 
-  <h1>Inserir</h1>
+  <button id="add-button" class="btn-floating btn-large waves-effect waves-light red">
+    <i class="material-icons">add</i>
+  </button>
+
   <form id="form-add">
     <label>
       Data
@@ -83,6 +86,11 @@
         console.log(button.closest('tr').remove());
       })
     });
+
+    $('#form-add').hide();
+    $('#add-button').on('click', function() {
+      $('#form-add').show();
+    })
 
   </script>
 </body>
