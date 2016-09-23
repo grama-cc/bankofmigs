@@ -23,7 +23,7 @@ gulp.task( 'sass', function() {
 gulp.task( 'js', function() {
   gulp.src([
     './node_modules/jquery/dist/jquery.js',
-    './node_modules/animejs/anime.js',
+    './node_modules/materialize-css/dist/js/materialize.js',
     './src/js/*.js'
   ])
   .pipe( gulpif( !isProduction, sourcemaps.init() ) )
@@ -51,4 +51,3 @@ gulp.task( 'watch', ['default'], function() {
 });
 
 gulp.task( 'production', ['set:production', 'default', 'clean:map'] );
-
