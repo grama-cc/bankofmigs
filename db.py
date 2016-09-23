@@ -9,6 +9,9 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True)
     balance = db.Column(db.Float())
 
+    loans = db.relationship('Transaction', backref='sender', lazy='dynamic')
+    debits = db.relantionship('Transaction', backref='receiver', lazy='dynamic')
+
     def __init__(self, username, email):
         self.username = username
         self.email = email
@@ -18,10 +21,10 @@ class User(db.Model):
 
 class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    sender = db.Column(db.Integer, db.ForeignKey('user.id'))
-    receiver = db.Column(db.String(80), db.ForeignKey('user.id'))
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    receiver_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     description = db.Column(db.String(120))
-    date = db.Column(db.DateTime())
+    date = db.Column(db.DateTime)
     value = db.Column(db.Float)
 
     def __init__(self, username, email):
