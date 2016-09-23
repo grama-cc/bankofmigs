@@ -1,6 +1,6 @@
 var data;
 var user = 'harrison';
-
+console.log(1)
 $.get( 'data.json', function( data ) {
   data = JSON.parse( data );
 
