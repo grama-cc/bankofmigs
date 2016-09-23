@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Mach Training</title>
+  <title>Bank of Migs</title>
   <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>style.css"/>
 </head>
 <body>
@@ -41,19 +41,23 @@
   <h1>Inserir</h1>
   <form id="form-add">
     <label>
-      Dar dinheiro para:
-      <select name="user">
-        <option value="flora">Flora</option>
-        <option value="edinho">Edinho</option>
-      </select>
+      Data
+      <input type="text" name="date">
     </label>
     <label>
       Descrição
       <input type="text" name="description">
     </label>
     <label>
-      Data
-      <input type="text" name="date">
+      Valor
+      <input type="text" name="value">
+    </label>
+    <label>
+      Dar dinheiro para:
+      <select name="user">
+        <option value="flora">Flora</option>
+        <option value="edinho">Edinho</option>
+      </select>
     </label>
     <button>Adicionar</button>
     <div class="feedback"></div>
