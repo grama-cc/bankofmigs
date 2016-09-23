@@ -21,8 +21,8 @@ class User(db.Model):
 
 class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    receiver_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    sender_id = db.Column(db.Integer, db.ForeignKey('sender.id'))
+    receiver_id = db.Column(db.Integer, db.ForeignKey('receiver.id'))
     description = db.Column(db.String(120))
     date = db.Column(db.DateTime)
     value = db.Column(db.Float)
