@@ -12,7 +12,7 @@ var uglify = require( 'gulp-uglify' );
 var isProduction = false;
 
 gulp.task( 'sass', function() {
-  gulp.src( './scss/style.scss' )
+  gulp.src( './src/scss/style.scss' )
     .pipe( gulpif ( !isProduction, sourcemaps.init() ) )
     .pipe( sass().on( 'error', sass.logError ) )
     .pipe( gulpif( isProduction, cleanCSS( { compatibility: 'ie10' } ) ) )
@@ -24,9 +24,7 @@ gulp.task( 'js', function() {
   gulp.src([
     './node_modules/jquery/dist/jquery.js',
     './node_modules/animejs/anime.js',
-    '/src/js/libs/**/*.js',
-    '/src/js/components/**/*.js',
-    '/src/js/*.js'
+    './src/js/*.js'
   ])
   .pipe( gulpif( !isProduction, sourcemaps.init() ) )
   .pipe( concat( 'script.js' ) )
@@ -48,8 +46,8 @@ gulp.task( 'clean:map', function () {
 gulp.task( 'default', ['sass', 'js'] );
 
 gulp.task( 'watch', ['default'], function() {
-  gulp.watch( './scss/**/*.scss', ['sass'] );
-  gulp.watch( './js/**/*.js', ['js'] );
+  gulp.watch( './src/scss/**/*.scss', ['sass'] );
+  gulp.watch( './src/js/**/*.js', ['js'] );
 });
 
 gulp.task( 'production', ['set:production', 'default', 'clean:map'] );
