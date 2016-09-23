@@ -1,5 +1,6 @@
 (function(){
 
+var api = 'http://192.168.1.29:5000';
 var data;
 var user = 'harrison';
 
@@ -30,7 +31,7 @@ $('#form-add').submit(function(e) {
   var form = $(this);
   var data = form.serialize();
 
-  $.post('http://192.168.1.29:5000/transaction/', data, function(response) {
+  $.post(api+'/transaction', data, function(response) {
     form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
   })
 
@@ -40,7 +41,7 @@ $('.delete').on('click', function(e) {
   var button = $(e.currentTarget);
   var id = button.attr('transaction-id');
 
-  $.post('.', id, function(response) {
+  $.post(api+'/transaction', id, function(response) {
     console.log(response);
     console.log(button.closest('tr').remove());
   })
