@@ -8,11 +8,16 @@ var sass = require( 'gulp-sass' );
 var sourcemaps = require( 'gulp-sourcemaps' );
 var del = require('del');
 var uglify = require( 'gulp-uglify' );
+var merge = require('merge2');
 
 var isProduction = false;
 
 gulp.task( 'sass', function() {
-  gulp.src( './src/scss/style.scss' )
+  gulp.src([
+    './node_modules/materialize-css/dist/css/materialize.css',
+    './src/scss/style.scss'
+  ])
+    .pipe( concat( 'style.css' ) )
     .pipe( gulpif ( !isProduction, sourcemaps.init() ) )
     .pipe( sass().on( 'error', sass.logError ) )
     .pipe( gulpif( isProduction, cleanCSS( { compatibility: 'ie10' } ) ) )
@@ -23,7 +28,7 @@ gulp.task( 'sass', function() {
 gulp.task( 'js', function() {
   gulp.src([
     './node_modules/jquery/dist/jquery.js',
-    './node_modules/materialize-css/dist/js/materialize.js',
+    './node_modules/animejs/anime.js',
     './src/js/*.js'
   ])
   .pipe( gulpif( !isProduction, sourcemaps.init() ) )
