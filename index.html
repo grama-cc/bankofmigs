@@ -4,7 +4,9 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Bank of Migs</title>
-  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./node_modules/materialize-css/dist/css/materialize.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/build/style.css"/>
 </head>
 <body>
 	<h1 class="user">Lalisson</h1>
@@ -20,14 +22,14 @@
 	  	<th>Grama</th>
 	  	<th>10 golpinhos</th>
 	  	<th><a href="">Edin</a></th>
-	    <th><button class="delete" transaction-id="1">X</button></th>
+	    <th><button class="delete waves-effect waves-light btn" transaction-id="1">X</button></th>
 	  </tr>
 	  <tr>
 	  	<th>12/08</th>
 	  	<th>Grama</th>
 	  	<th>10 golpinhos</th>
 	  	<th><a href="">Flora</a></th>
-	    <th><button class="delete" transaction-id="2">X</button></th>
+	    <th><button class="delete waves-effect waves-light btn" transaction-id="2">X</button></th>
 	  </tr>
   </table>
 
@@ -57,14 +59,16 @@
   </form>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="./node_modules/materialize-css/dist/js/materialize.js"></script>
   <script type="text/javascript">
+
     $('#form-add').submit(function(e) {
       e.preventDefault();
 
       var form = $(this);
       var data = form.serialize();
 
-      $.post('table.html', data, function(response) {
+      $.post('.', data, function(response) {
         form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
       })
 
@@ -74,7 +78,7 @@
       var button = $(e.currentTarget);
       var id = button.attr('transaction-id');
 
-      $.post('table.html', id, function(response) {
+      $.post('.', id, function(response) {
         console.log(response);
         console.log(button.closest('tr').remove());
       })
