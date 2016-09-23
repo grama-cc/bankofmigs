@@ -10,5 +10,5 @@ def transaction():
     return "Hello World!"
 
 if __name__ == "__main__":
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://test.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://migs:migs@192.168.1.26/bank-of-migs-dev'
     app.run()
