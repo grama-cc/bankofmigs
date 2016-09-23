@@ -1,7 +1,19 @@
 @import '../../node_modules/materialize-css/dist/css/materialize.css';
 
-body {
-	background-color: red;
+
+.user {
+  width: 70%;
+  margin: auto;
+  margin-top: 90px;
+}
+
+.transitions {
+  width: 70%;
+  margin: auto;
+}
+
+#add-button {
+  left: 15%;
 }
 
 #action-button {
@@ -17,7 +29,6 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0,0,0, 0.9);
 }
 
 #form-add.show {
