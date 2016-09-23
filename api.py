@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, request
 from flask.wrappers import Response
 from flask_sqlalchemy import SQLAlchemy
@@ -36,6 +38,14 @@ def user(user_id):
     user = User.query.filter_by(id=user_id).first()
     return {'id': user.id, 'username': user.username, 'email': user.email, 'balance': user.balance}
 
+@app.route("/users/")
+def users():
+    data = []
+    users = User.query.all()
+    for u in users:
+        data.append({'id': u.id, 'username': u.username, 'balance': u.balance})
+    return Response(response=json.dumps(data), status=200, mimetype="application/json")
+
 @app.route("/transaction/", methods=['GET', 'POST'])
 def transaction():
     if request.method == 'POST':
@@ -45,7 +55,7 @@ def transaction():
         sender = User.query.filter_by(username=sender_username).first()
         if not sender:
             sender = User(sender_username)
-        receiver = User.query.filter_by(id=receiver_username).first()
+        receiver = User.query.filter_by(username=receiver_username).first()
         if not receiver:
             receiver = User(receiver_username)
 
@@ -62,6 +72,7 @@ def transaction():
 
         db.session.add(sender)
         db.session.add(receiver)
+        db.session.add(transaction)
         db.session.commit()
     else:
         pass
@@ -70,7 +81,11 @@ def transaction():
 
 @app.route("/transactions/", methods=['GET'])
 def transactions():
-    return "BAL"
+    data = []
+    transactions = Transaction.query.all()
+    for t in transactions:
+        data.append({'sender': t.sender, 'receiver': t.receiver, 'amount': t.amount})
+    return Response(response=json.dumps(data), status=200, mimetype="application/json")
 
 if __name__ == "__main__":
     app.run()
