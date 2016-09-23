@@ -4,12 +4,30 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Bank of Migs</title>
-<<<<<<< HEAD
-=======
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="./node_modules/materialize-css/dist/css/materialize.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/build/style.css"/>
->>>>>>> master
+  <link rel="stylesheet" type="text/css" href="./build/css/style.css"/>
+  <style type="text/css">
+    #action-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    #form-add {
+      display: none;
+      /*position: fixed;*/
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba(0,0,0, 0.9);
+    }
+
+    #form-add.show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 	<h1 class="user">Lalisson</h1>
@@ -27,6 +45,7 @@
   </button>
 
   <form id="form-add">
+    <input type="hidden" name="sender" value="larrison"/>
     <label>
       Data
       <input type="text" name="date">
@@ -41,7 +60,7 @@
     </label>
     <label>
       Dar dinheiro para:
-      <select name="user">
+      <select name="receiver">
         <option value="flora">Flora</option>
         <option value="edinho">Edinho</option>
       </select>
@@ -51,11 +70,8 @@
   </form>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<<<<<<< HEAD
-  <script type="text/javascript" src="js/script.js"></script>
-=======
   <script type="text/javascript" src="./node_modules/materialize-css/dist/js/materialize.js"></script>
->>>>>>> master
+  <script type="text/javascript" src="./build/js/script.js"></script>
   <script type="text/javascript">
 
     $('#form-add').submit(function(e) {
@@ -64,7 +80,7 @@
       var form = $(this);
       var data = form.serialize();
 
-      $.post('.', data, function(response) {
+      $.post('http://192.168.1.29:5000/transaction/', data, function(response) {
         form.find('.feedback').text('Adicionado :) |||| ' + data.toString() + ' |||| ' + response);
       })
 
@@ -80,9 +96,8 @@
       })
     });
 
-    $('#form-add').hide();
     $('#add-button').on('click', function() {
-      $('#form-add').show();
+      $('#form-add').addClass('show');
     })
 
   </script>
